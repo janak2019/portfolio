@@ -1,0 +1,61 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 20px;
+}
+:root{
+    --primaryColor : #6e64c6;
+
+    --lightColor : gold;
+
+    --darkColor : rgb(95, 83, 15);
+}
+nav{
+    background-color: var(--primaryColor);
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    height: 8vh;
+
+}
+nav ul{
+    width: 25%;
+    display: flex;
+    font: size 2rem;
+    justify-content: space-evenly;
+}
+nav ul li{
+    color: var(--lightColor);
+}
+nav ul li:hover{
+    cursor: pointer;
+    text-decoration: underline;
+
+}
+nav h1{
+    font-size: 2.5rem;
+    color:var(--lightColor);
+    padding: 1rem;
+}
+nav h1 span{
+    color: var(--darkColor);
+    font-size: 3rem;
+
+}
+.hero{
+    display: flex;
+    height: 92vh;
+    background-color: var(--primaryColor);
+
+}
+.hero .left{
+    height: 100%;
+    width: 50%;
+    background-color: red;
+}
+.hero .right{
+    height: 100%;
+    width: 50%;
+    background-color: greenyellow;
+}
