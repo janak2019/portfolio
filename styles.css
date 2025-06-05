@@ -41,7 +41,7 @@ nav ul li:hover{
 
 }
 nav h1{
-    font-size: 2.5rem;
+    font-size: 2rem;
     color:var(--lightColor);
     padding: 1rem;
     margin: 1rem;
@@ -113,4 +113,41 @@ nav h1 span{
 .hero .right img{
     height: 100%;
     border-radius: 70px;
+}
+.services{
+    margin: 1rem;
+        height: 85vh;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1rem;
+    text-align: center;
+}
+.services div{
+    
+    height: 15rem;
+    border: 1px solid red;
+    border-radius: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primaryColor);
+    border-radius: 25% 10%;
+}
+.services div img{
+    height: 4rem;
+    width: 4rem;
+    border-radius: 40%;
+
+}
+.servicesHeading h1{
+    text-align: center;
+    margin: 2px;
+    font-size: 3rem;
+    color: var(--lightColor);
+    text-decoration: underline;
+}
+.services div:hover{
+    cursor: pointer;
+    background-color:var(--darkColor) ;
 }
