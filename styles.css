@@ -4,6 +4,11 @@
     list-style: none;
     font-size: 20px;
 }
+a{
+    text-decoration: none;
+    color: var(--lightColor);
+
+}
 :root{
     --primaryColor : #6e64c6;
 
@@ -17,6 +22,7 @@ nav{
     justify-content: space-between;
     align-items: center;
     height: 8vh;
+    border-bottom: 1px solid var(--darkColor)  ;
 
 }
 nav ul{
@@ -31,12 +37,14 @@ nav ul li{
 nav ul li:hover{
     cursor: pointer;
     text-decoration: underline;
+    color: var(--darkColor);
 
 }
 nav h1{
     font-size: 2.5rem;
     color:var(--lightColor);
     padding: 1rem;
+    margin: 1rem;
 }
 nav h1 span{
     color: var(--darkColor);
@@ -52,10 +60,57 @@ nav h1 span{
 .hero .left{
     height: 100%;
     width: 50%;
-    background-color: red;
+    background-color: var(--primaryColor);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    line-height: 2rem;
 }
 .hero .right{
     height: 100%;
     width: 50%;
-    background-color: greenyellow;
+    background-color: var(--primaryColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left p{
+    color : var(--lightColor);
+    font-size: 1.1rem;
+}
+.left h1{
+    margin: 1rem;
+    font-size: 3rem;
+}
+.socialMedia{
+    width: 10rem;
+    display: flex;
+    justify-content: space-evenly;
+
+
+}
+.socialMedia img{
+    height: 2rem;
+    border-radius: 50%;
+}
+.socialMediaName{
+    width: 10rem;
+    display: flex;
+    justify-content: space-evenly;
+    margin: -0.5rem;
+}
+.socialMediaName p{
+    font-size: 0.7rem;
+   
+}
+.socialMediaName p:hover{
+ cursor: pointer;
+    text-decoration: underline;
+}
+.hero .right img{
+    height: 100%;
+    border-radius: 70px;
 }
