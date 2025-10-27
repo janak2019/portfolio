@@ -4,10 +4,10 @@ import ProfilePic from "../../../src/assets/PorfilePic.png";
 
 const Home = () => {
   const [activeSection, setActiveSection] = useState("home");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section");
-    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -16,11 +16,9 @@ const Home = () => {
           }
         });
       },
-      { threshold: 0.6 } // trigger when 60% of section is visible
+      { threshold: 0.6 }
     );
-
     sections.forEach((section) => observer.observe(section));
-
     return () => observer.disconnect();
   }, []);
 
@@ -28,35 +26,51 @@ const Home = () => {
     <>
       {/* Navbar */}
       <header className="navbar">
-        <div className="logo"><a href="/">Janak Acharya</a></div>
-        <nav className="nav-links">
+        <div className="logo"><a href="">Janak <span>Acharya</span></a></div>
+
+        {/* Hamburger Icon */}
+        <div
+          className={`hamburger ${menuOpen ? "open" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
           <a
             href="/"
             className={activeSection === "home" ? "active" : ""}
+            onClick={() => setMenuOpen(false)}
           >
             Home
           </a>
           <a
             href="#about"
             className={activeSection === "about" ? "active" : ""}
+            onClick={() => setMenuOpen(false)}
           >
             About
           </a>
           <a
             href="#skills"
             className={activeSection === "skills" ? "active" : ""}
+            onClick={() => setMenuOpen(false)}
           >
             Skills
           </a>
           <a
             href="#portfolio"
             className={activeSection === "portfolio" ? "active" : ""}
+            onClick={() => setMenuOpen(false)}
           >
             Portfolio
           </a>
           <a
             href="#contact"
             className={activeSection === "contact" ? "active" : ""}
+            onClick={() => setMenuOpen(false)}
           >
             Contact
           </a>
@@ -65,17 +79,25 @@ const Home = () => {
 
       {/* Hero Section */}
       <section id="home" className="hero">
-        <h1>Hi, I'm <span>Janak Acharya</span></h1>
-        <p>Full Stack Developer | Designer | Learner</p>
-        <a href="#contact" className="btn">Hire Me</a>
+        <h1>
+          Hi, I'm <span>Janak Acharya</span>
+        </h1>
+        <p>Frontend Developer | Designer | Learner</p>
+        <a href="#contact" className="btn">
+          Hire Me
+        </a>
       </section>
 
       {/* About Section */}
       <section id="about" className="about container">
-        <img src={ProfilePic} alt="Profile Picture" className="profile-pic"/>
+        <img src={ProfilePic} alt="Profile Picture" className="profile-pic" />
         <div className="bio">
           <h2>About Me</h2>
-          <p>I'm a passionate web developer with experience in HTML, CSS, JavaScript, React, and responsive design. I love creating clean and modern web interfaces.</p>
+          <p>
+            I'm a passionate web developer with experience in HTML, CSS,
+            JavaScript, React, and responsive design. I love creating clean and
+            modern web interfaces.
+          </p>
         </div>
       </section>
 
@@ -92,25 +114,26 @@ const Home = () => {
       </section>
 
       {/* Portfolio Section */}
-<section id="portfolio" className="portfolio container">
-  <h2>Portfolio</h2>
-  <div className="projects-grid">
-    <div className="project">Project 1</div>
-    <div className="project">Project 2</div>
-    <div className="project">Project 3</div>
-    <div className="project">Project 4</div>
-   
-  </div>
-</section>
+      <section id="portfolio" className="portfolio container">
+        <h2>Portfolio</h2>
+        <div className="projects-grid">
+          <div className="project">Project 1</div>
+          <div className="project">Project 2</div>
+          <div className="project">Project 3</div>
+          <div className="project">Project 4</div>
+        </div>
+      </section>
 
       {/* Contact Section */}
       <section id="contact" className="contact container">
         <h2>Contact Me</h2>
         <form>
-          <input type="text" placeholder="Your Name" required/>
-          <input type="email" placeholder="Your Email" required/>
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
           <textarea placeholder="Your Message" required></textarea>
-          <button type="submit" className="btn">Send Message</button>
+          <button type="submit" className="btn">
+            Send Message
+          </button>
         </form>
       </section>
 
