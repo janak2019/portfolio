@@ -26,9 +26,10 @@ body {
   backdrop-filter: blur(8px);
 }
 
-.logo {
+.logo a {
   font-size: 1.5rem;
   font-weight: 700;
+  text-decoration: none;
   color: #00d8ff;
   letter-spacing: 1px;
 }

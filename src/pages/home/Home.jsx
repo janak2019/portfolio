@@ -28,7 +28,7 @@ const Home = () => {
     <>
       {/* Navbar */}
       <header className="navbar">
-        <div className="logo">Janak Acharya</div>
+        <div className="logo"><a href="/">Janak Acharya</a></div>
         <nav className="nav-links">
           <a
             href="/"
