@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Home.css"
+import ProfilePic from "../../../src/assets/PorfilePic.png"
 
 const Home = () => {
   return (
@@ -23,7 +24,7 @@ const Home = () => {
   </section>
    {/* <!-- About Me Section --> */}
   <section id="about" className="about container">
-    <img src="../src/pic1.jpg" alt="Profile Picture"
+    <img src={ProfilePic} alt="Profile Picture"
       className="profile-pic"/>
     <div className="bio">
       <h2>About Me</h2>
