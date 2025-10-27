@@ -31,7 +31,7 @@ const Home = () => {
         <div className="logo">Janak Acharya</div>
         <nav className="nav-links">
           <a
-            href="#home"
+            href="/"
             className={activeSection === "home" ? "active" : ""}
           >
             Home
