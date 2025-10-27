@@ -66,7 +66,7 @@ const Home = () => {
       {/* Hero Section */}
       <section id="home" className="hero">
         <h1>Hi, I'm <span>Janak Acharya</span></h1>
-        <p>Frontend Developer | Designer | Learner</p>
+        <p>Full Stack Developer | Designer | Learner</p>
         <a href="#contact" className="btn">Hire Me</a>
       </section>
 
@@ -92,13 +92,16 @@ const Home = () => {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="portfolio container">
-        <h2>Portfolio</h2>
-        <div className="project">Project 1</div>
-        <div className="project">Project 2</div>
-        <div className="project">Project 3</div>
-        <div className="project">Project 4</div>
-      </section>
+<section id="portfolio" className="portfolio container">
+  <h2>Portfolio</h2>
+  <div className="projects-grid">
+    <div className="project">Project 1</div>
+    <div className="project">Project 2</div>
+    <div className="project">Project 3</div>
+    <div className="project">Project 4</div>
+   
+  </div>
+</section>
 
       {/* Contact Section */}
       <section id="contact" className="contact container">
