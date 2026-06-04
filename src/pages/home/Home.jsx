@@ -139,8 +139,10 @@ const Home = () => {
 
       {/* Footer */}
       <footer className="footer">
-        <p>&copy; 2025 Janak Acharya. All Rights Reserved.</p>
-      </footer>
+  <p>
+    © {new Date().getFullYear()} Janak Acharya. All Rights Reserved.
+  </p>
+</footer>
     </>
   );
 };
