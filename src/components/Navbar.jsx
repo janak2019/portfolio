@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
@@ -12,12 +14,14 @@ function Navbar() {
         </h1>
 
         <nav className="hidden md:flex gap-8 text-white">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#portfolio">Portfolio</a>
-          <a href="#blog">Blog</a>
-          <a href="#contact">Contact</a>
+          <HashLink smooth to="/#home">Home</HashLink>
+          <HashLink smooth to="/#about">About</HashLink>
+          <HashLink smooth to="/#skills">Skills</HashLink>
+          <HashLink smooth to="/#portfolio">Portfolio</HashLink>
+
+          <Link to="/blog">Blog</Link>
+
+          <HashLink smooth to="/#contact">Contact</HashLink>
         </nav>
 
         <button
@@ -30,12 +34,14 @@ function Navbar() {
 
       {open && (
         <div className="md:hidden bg-slate-900 flex flex-col items-center gap-4 py-4">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#portfolio">Portfolio</a>
-          <a href="#blog">Blog</a>
-          <a href="#contact">Contact</a>
+          <HashLink smooth to="/#home">Home</HashLink>
+          <HashLink smooth to="/#about">About</HashLink>
+          <HashLink smooth to="/#skills">Skills</HashLink>
+          <HashLink smooth to="/#portfolio">Portfolio</HashLink>
+
+          <Link to="/blog">Blog</Link>
+
+          <HashLink smooth to="/#contact">Contact</HashLink>
         </div>
       )}
     </header>
