@@ -16,6 +16,7 @@ function Navbar() {
           <a href="#about">About</a>
           <a href="#skills">Skills</a>
           <a href="#portfolio">Portfolio</a>
+          <a href="#blog">Blog</a>
           <a href="#contact">Contact</a>
         </nav>
 
@@ -33,6 +34,7 @@ function Navbar() {
           <a href="#about">About</a>
           <a href="#skills">Skills</a>
           <a href="#portfolio">Portfolio</a>
+          <a href="#blog">Blog</a>
           <a href="#contact">Contact</a>
         </div>
       )}

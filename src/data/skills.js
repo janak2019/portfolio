@@ -5,4 +5,5 @@ export const skills = [
   "React",
   "Node.js",
   "MySQL",
+  "MongoDB",
 ];
