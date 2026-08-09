@@ -3,49 +3,107 @@ import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
-function Navbar() {
+export default function Navbar() {
   const [open, setOpen] = useState(false);
 
+  const closeMenu = () => {
+    setOpen(false);
+  };
+
+  const navLinks = [
+    { label: "Home", to: "/#home", hash: true },
+    { label: "About", to: "/#about", hash: true },
+    { label: "Skills", to: "/#skills", hash: true },
+    { label: "Portfolio", to: "/#portfolio", hash: true },
+    { label: "Blog", to: "/blog", hash: false },
+    { label: "Contact", to: "/#contact", hash: true },
+  ];
+
   return (
-    <header className="fixed top-0 w-full bg-black/70 backdrop-blur-md z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <h1 className="text-cyan-400 text-2xl font-bold">
-          Janak Acharya
-        </h1>
+    <header className="fixed top-0 left-0 right-0 z-50">
+      <div className="bg-slate-950/80 backdrop-blur-md border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="h-20 flex items-center justify-between">
 
-        <nav className="hidden md:flex gap-8 text-white">
-          <HashLink smooth to="/#home">Home</HashLink>
-          <HashLink smooth to="/#about">About</HashLink>
-          <HashLink smooth to="/#skills">Skills</HashLink>
-          <HashLink smooth to="/#portfolio">Portfolio</HashLink>
+            {/* Logo */}
+            <Link
+              to="/"
+              onClick={closeMenu}
+              className="text-xl md:text-2xl font-bold text-white tracking-wide"
+            >
+              Janak <span className="text-cyan-400">Acharya</span>
+            </Link>
 
-          <Link to="/blog">Blog</Link>
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-8">
+              {navLinks.map((link) =>
+                link.hash ? (
+                  <HashLink
+                    key={link.label}
+                    smooth
+                    to={link.to}
+                    className="text-gray-300 hover:text-cyan-400 transition-colors duration-300"
+                  >
+                    {link.label}
+                  </HashLink>
+                ) : (
+                  <Link
+                    key={link.label}
+                    to={link.to}
+                    className="text-gray-300 hover:text-cyan-400 transition-colors duration-300"
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
+            </nav>
 
-          <HashLink smooth to="/#contact">Contact</HashLink>
-        </nav>
-
-        <button
-          className="md:hidden text-white"
-          onClick={() => setOpen(!open)}
-        >
-          {open ? <X /> : <Menu />}
-        </button>
-      </div>
-
-      {open && (
-        <div className="md:hidden bg-slate-900 flex flex-col items-center gap-4 py-4">
-          <HashLink smooth to="/#home">Home</HashLink>
-          <HashLink smooth to="/#about">About</HashLink>
-          <HashLink smooth to="/#skills">Skills</HashLink>
-          <HashLink smooth to="/#portfolio">Portfolio</HashLink>
-
-          <Link to="/blog">Blog</Link>
-
-          <HashLink smooth to="/#contact">Contact</HashLink>
+            {/* Mobile Menu Button */}
+            <button
+              type="button"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              className="md:hidden text-white hover:text-cyan-400 transition-colors"
+              onClick={() => setOpen(!open)}
+            >
+              {open ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
         </div>
-      )}
+
+        {/* Mobile Navigation */}
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-300 ${
+            open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <nav className="flex flex-col items-center gap-5 py-6 border-t border-white/10">
+            {navLinks.map((link) =>
+              link.hash ? (
+                <HashLink
+                  key={link.label}
+                  smooth
+                  to={link.to}
+                  onClick={closeMenu}
+                  className="text-gray-300 hover:text-cyan-400 transition-colors duration-300"
+                >
+                  {link.label}
+                </HashLink>
+              ) : (
+                <Link
+                  key={link.label}
+                  to={link.to}
+                  onClick={closeMenu}
+                  className="text-gray-300 hover:text-cyan-400 transition-colors duration-300"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
+          </nav>
+        </div>
+      </div>
     </header>
   );
 }
 
-export default Navbar;
