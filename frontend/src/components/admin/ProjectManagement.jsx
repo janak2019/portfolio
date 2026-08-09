@@ -33,7 +33,17 @@ function ProjectManagement({ onChange }) {
       console.error("Failed to fetch projects:", error);
     }
   };
+const fetchProjects = async () => {
+  try {
+    const response = await api.get("/projects");
 
+    console.log("PROJECT API RESPONSE:", response.data);
+
+    setProjects(response.data.data);
+  } catch (error) {
+    console.error("PROJECT FETCH ERROR:", error);
+  }
+};
   const handleDelete = async (id) => {
     const confirmed = window.confirm(
       "Are you sure you want to delete this project?"
@@ -69,16 +79,14 @@ function ProjectManagement({ onChange }) {
     <>
       {/* Add Project Form */}
       {showAddForm && (
-        <div className="mb-6">
-          <AddProjectForm
-            onClose={() => setShowAddForm(false)}
-            onSuccess={() => {
-              setShowAddForm(false);
-              fetchProjects();
-              onChange?.();
-            }}
-          />
-        </div>
+        <AddProjectForm
+          onClose={() => setShowAddForm(false)}
+          onSuccess={() => {
+            setShowAddForm(false);
+            fetchProjects();
+            onChange?.();
+          }}
+        />
       )}
 
       {/* Edit Project Form */}
@@ -106,7 +114,7 @@ function ProjectManagement({ onChange }) {
             </h3>
 
             <p className="text-sm text-slate-400 mt-1">
-              Projects stored in your MySQL database
+              Projects stored in MongoDB
             </p>
           </div>
 
@@ -144,14 +152,14 @@ function ProjectManagement({ onChange }) {
 
             <tbody>
 
-              {projects.map((project) => (
+              {projects.map((project, index) => (
                 <tr
-                  key={project.id}
+                  key={project._id}
                   className="border-b border-slate-800 last:border-none"
                 >
 
                   <td className="px-6 py-4 text-slate-400">
-                    {project.id}
+                    {index + 1}
                   </td>
 
                   <td className="px-6 py-4">
@@ -183,7 +191,7 @@ function ProjectManagement({ onChange }) {
 
                       <button
                         onClick={() =>
-                          handleDelete(project.id)
+                          handleDelete(project._id)
                         }
                         className="text-red-400 hover:underline"
                       >
