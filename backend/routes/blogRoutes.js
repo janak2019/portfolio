@@ -1,15 +1,13 @@
 import express from "express";
-import db from "../config/db.js";
+import Blog from "../model/Blog.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 
 const router = express.Router();
+
+// GET all blogs for admin
 router.get("/admin/all", authMiddleware, async (req, res) => {
   try {
-    const [blogs] = await db.query(
-      `SELECT *
-       FROM blogs
-       ORDER BY created_at DESC`
-    );
+    const blogs = await Blog.find().sort({ createdAt: -1 });
 
     res.json({
       success: true,
@@ -28,12 +26,9 @@ router.get("/admin/all", authMiddleware, async (req, res) => {
 // GET published blogs
 router.get("/", async (req, res) => {
   try {
-    const [blogs] = await db.query(
-      `SELECT id, title, description, content, image, slug, published, created_at, updated_at
-       FROM blogs
-       WHERE published = TRUE
-       ORDER BY created_at DESC`
-    );
+    const blogs = await Blog.find({ published: true }).sort({
+      createdAt: -1,
+    });
 
     res.json({
       success: true,
@@ -49,20 +44,17 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET single blog
+// GET single published blog by slug
 router.get("/:slug", async (req, res) => {
   try {
     const { slug } = req.params;
 
-    const [blogs] = await db.query(
-      `SELECT *
-       FROM blogs
-       WHERE slug = ? AND published = TRUE
-       LIMIT 1`,
-      [slug]
-    );
+    const blog = await Blog.findOne({
+      slug,
+      published: true,
+    });
 
-    if (blogs.length === 0) {
+    if (!blog) {
       return res.status(404).json({
         success: false,
         message: "Blog not found",
@@ -71,7 +63,7 @@ router.get("/:slug", async (req, res) => {
 
     res.json({
       success: true,
-      data: blogs[0],
+      data: blog,
     });
   } catch (error) {
     console.error("Error fetching blog:", error);
@@ -102,34 +94,31 @@ router.post("/", authMiddleware, async (req, res) => {
       });
     }
 
-    const [result] = await db.query(
-      `INSERT INTO blogs
-       (title, description, content, image, slug, published)
-       VALUES (?, ?, ?, ?, ?, ?)`,
-      [
-        title,
-        description,
-        content,
-        image || null,
-        slug,
-        published ?? true,
-      ]
-    );
+    const existingBlog = await Blog.findOne({ slug });
 
-    res.status(201).json({
-      success: true,
-      message: "Blog created successfully",
-      blogId: result.insertId,
-    });
-  } catch (error) {
-    console.error("Error creating blog:", error);
-
-    if (error.code === "ER_DUP_ENTRY") {
+    if (existingBlog) {
       return res.status(409).json({
         success: false,
         message: "A blog with this slug already exists",
       });
     }
+
+    const blog = await Blog.create({
+      title,
+      description,
+      content,
+      image: image || null,
+      slug,
+      published: published ?? true,
+    });
+
+    res.status(201).json({
+      success: true,
+      message: "Blog created successfully",
+      blogId: blog._id,
+    });
+  } catch (error) {
+    console.error("Error creating blog:", error);
 
     res.status(500).json({
       success: false,
@@ -159,27 +148,35 @@ router.put("/:id", authMiddleware, async (req, res) => {
       });
     }
 
-    const [result] = await db.query(
-      `UPDATE blogs
-       SET title = ?,
-           description = ?,
-           content = ?,
-           image = ?,
-           slug = ?,
-           published = ?
-       WHERE id = ?`,
-      [
+    const existingBlog = await Blog.findOne({
+      slug,
+      _id: { $ne: id },
+    });
+
+    if (existingBlog) {
+      return res.status(409).json({
+        success: false,
+        message: "A blog with this slug already exists",
+      });
+    }
+
+    const blog = await Blog.findByIdAndUpdate(
+      id,
+      {
         title,
         description,
         content,
-        image || null,
+        image: image || null,
         slug,
-        published ?? true,
-        id,
-      ]
+        published: published ?? true,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
     );
 
-    if (result.affectedRows === 0) {
+    if (!blog) {
       return res.status(404).json({
         success: false,
         message: "Blog not found",
@@ -189,6 +186,7 @@ router.put("/:id", authMiddleware, async (req, res) => {
     res.json({
       success: true,
       message: "Blog updated successfully",
+      data: blog,
     });
   } catch (error) {
     console.error("Error updating blog:", error);
@@ -205,12 +203,9 @@ router.delete("/:id", authMiddleware, async (req, res) => {
   try {
     const { id } = req.params;
 
-    const [result] = await db.query(
-      "DELETE FROM blogs WHERE id = ?",
-      [id]
-    );
+    const blog = await Blog.findByIdAndDelete(id);
 
-    if (result.affectedRows === 0) {
+    if (!blog) {
       return res.status(404).json({
         success: false,
         message: "Blog not found",
@@ -232,3 +227,4 @@ router.delete("/:id", authMiddleware, async (req, res) => {
 });
 
 export default router;
+

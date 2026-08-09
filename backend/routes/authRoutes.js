@@ -1,7 +1,9 @@
+
 import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import db from "../config/db.js";
+
+import Admin from "../model/Admin.js";
 
 const router = express.Router();
 
@@ -18,19 +20,16 @@ router.post("/login", async (req, res) => {
     }
 
     // Find admin
-    const [admins] = await db.query(
-      "SELECT * FROM admin_users WHERE email = ? LIMIT 1",
-      [email]
-    );
+    const admin = await Admin.findOne({
+      email: email.toLowerCase(),
+    });
 
-    if (admins.length === 0) {
+    if (!admin) {
       return res.status(401).json({
         success: false,
         message: "Invalid email or password",
       });
     }
-
-    const admin = admins[0];
 
     // Compare password
     const passwordMatch = await bcrypt.compare(
@@ -48,7 +47,7 @@ router.post("/login", async (req, res) => {
     // Create JWT
     const token = jwt.sign(
       {
-        id: admin.id,
+        id: admin._id,
         email: admin.email,
         name: admin.name,
       },
@@ -63,7 +62,7 @@ router.post("/login", async (req, res) => {
       message: "Login successful",
       token,
       admin: {
-        id: admin.id,
+        id: admin._id,
         name: admin.name,
         email: admin.email,
       },

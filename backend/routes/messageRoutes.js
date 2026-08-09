@@ -1,5 +1,7 @@
+
 import express from "express";
-import db from "../config/db.js";
+import mongoose from "mongoose";
+import Message from "../model/Message.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 
 const router = express.Router();
@@ -16,17 +18,17 @@ router.post("/", async (req, res) => {
       });
     }
 
-    const [result] = await db.query(
-      `INSERT INTO messages
-       (name, email, message)
-       VALUES (?, ?, ?)`,
-      [name, email, message]
-    );
+    const newMessage = await Message.create({
+      name,
+      email,
+      message,
+      is_read: false,
+    });
 
     res.status(201).json({
       success: true,
       message: "Message sent successfully",
-      messageId: result.insertId,
+      messageId: newMessage._id,
     });
   } catch (error) {
     console.error("Error saving message:", error);
@@ -41,11 +43,8 @@ router.post("/", async (req, res) => {
 // Admin - get messages
 router.get("/", authMiddleware, async (req, res) => {
   try {
-    const [messages] = await db.query(
-      `SELECT *
-       FROM messages
-       ORDER BY created_at DESC`
-    );
+    const messages = await Message.find()
+      .sort({ created_at: -1 });
 
     res.json({
       success: true,
@@ -66,14 +65,20 @@ router.put("/:id/read", authMiddleware, async (req, res) => {
   try {
     const { id } = req.params;
 
-    const [result] = await db.query(
-      `UPDATE messages
-       SET is_read = TRUE
-       WHERE id = ?`,
-      [id]
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid message ID",
+      });
+    }
+
+    const message = await Message.findByIdAndUpdate(
+      id,
+      { is_read: true },
+      { new: true }
     );
 
-    if (result.affectedRows === 0) {
+    if (!message) {
       return res.status(404).json({
         success: false,
         message: "Message not found",
@@ -83,6 +88,7 @@ router.put("/:id/read", authMiddleware, async (req, res) => {
     res.json({
       success: true,
       message: "Message marked as read",
+      data: message,
     });
   } catch (error) {
     console.error("Error updating message:", error);
@@ -99,12 +105,16 @@ router.delete("/:id", authMiddleware, async (req, res) => {
   try {
     const { id } = req.params;
 
-    const [result] = await db.query(
-      "DELETE FROM messages WHERE id = ?",
-      [id]
-    );
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid message ID",
+      });
+    }
 
-    if (result.affectedRows === 0) {
+    const message = await Message.findByIdAndDelete(id);
+
+    if (!message) {
       return res.status(404).json({
         success: false,
         message: "Message not found",

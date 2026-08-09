@@ -1,39 +1,43 @@
 import express from "express";
-import db from "../config/db.js";
+
+import Project from "../model/Project.js";
+import Blog from "../model/Blog.js";
+import Message from "../model/Message.js";
+
 import authMiddleware from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
+// GET dashboard statistics
 router.get("/stats", authMiddleware, async (req, res) => {
   try {
-    const [[projects]] = await db.query(
-      "SELECT COUNT(*) AS total FROM projects"
-    );
+    // Total projects
+    const projects = await Project.countDocuments();
 
-    const [[blogs]] = await db.query(
-      "SELECT COUNT(*) AS total FROM blogs"
-    );
+    // Total blogs
+    const blogs = await Blog.countDocuments();
 
-    const [[publishedBlogs]] = await db.query(
-      "SELECT COUNT(*) AS total FROM blogs WHERE published = TRUE"
-    );
+    // Published blogs
+    const publishedBlogs = await Blog.countDocuments({
+      published: true,
+    });
 
-    const [[messages]] = await db.query(
-      "SELECT COUNT(*) AS total FROM messages"
-    );
+    // Total messages
+    const messages = await Message.countDocuments();
 
-    const [[unreadMessages]] = await db.query(
-      "SELECT COUNT(*) AS total FROM messages WHERE is_read = FALSE"
-    );
+    // Unread messages
+    const unreadMessages = await Message.countDocuments({
+      is_read: false,
+    });
 
     res.json({
       success: true,
       data: {
-        projects: projects.total,
-        blogs: blogs.total,
-        publishedBlogs: publishedBlogs.total,
-        messages: messages.total,
-        unreadMessages: unreadMessages.total,
+        projects,
+        blogs,
+        publishedBlogs,
+        messages,
+        unreadMessages,
       },
     });
   } catch (error) {
@@ -47,3 +51,4 @@ router.get("/stats", authMiddleware, async (req, res) => {
 });
 
 export default router;
+

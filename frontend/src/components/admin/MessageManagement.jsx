@@ -84,7 +84,7 @@ function MessageManagement({onChange}) {
 
           {messages.map((message) => (
             <div
-              key={message.id}
+              key={message._id}
               className={`p-6 transition ${
                 message.is_read
                   ? "bg-slate-900"
@@ -134,7 +134,7 @@ function MessageManagement({onChange}) {
                   {!message.is_read && (
                     <button
                       onClick={() =>
-                        markAsRead(message.id)
+                        markAsRead(message._id)
                       }
                       className="text-cyan-400 hover:underline text-left"
                     >
@@ -144,7 +144,7 @@ function MessageManagement({onChange}) {
 
                   <button
                     onClick={() =>
-                      handleDelete(message.id)
+                      handleDelete(message._id)
                     }
                     className="text-red-400 hover:underline text-left"
                   >

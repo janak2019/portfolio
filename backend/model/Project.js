@@ -1,0 +1,44 @@
+
+import mongoose from "mongoose";
+
+const projectSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    description: {
+      type: String,
+      required: true,
+    },
+
+    technologies: {
+      type: String,
+      default: null,
+    },
+
+    image: {
+      type: String,
+      default: null,
+    },
+
+    github_url: {
+      type: String,
+      default: null,
+    },
+
+    live_url: {
+      type: String,
+      default: null,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+const Project = mongoose.model("Project", projectSchema);
+
+export default Project;

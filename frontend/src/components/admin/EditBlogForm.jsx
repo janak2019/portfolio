@@ -23,27 +23,27 @@ function EditBlogForm({ blog, onSuccess, onClose }) {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    setLoading(true);
-    setError("");
+  setLoading(true);
+  setError("");
 
-    try {
-      await api.put(`/blogs/${blog.id}`, formData);
+  try {
+    await api.put(`/blogs/${blog._id}`, formData);
 
-      onSuccess();
-    } catch (error) {
-      console.error(error);
+    onSuccess();
+  } catch (error) {
+    console.error(error);
 
-      setError(
-        error.response?.data?.message ||
-          "Failed to update blog."
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
+    setError(
+      error.response?.data?.message ||
+        "Failed to update blog."
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 mb-6">

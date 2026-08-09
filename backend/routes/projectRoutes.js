@@ -1,5 +1,6 @@
+
 import express from "express";
-import db from "../config/db.js";
+import Project from "../model/Project.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 
 const router = express.Router();
@@ -7,9 +8,7 @@ const router = express.Router();
 // GET all projects
 router.get("/", async (req, res) => {
   try {
-    const [projects] = await db.query(
-      "SELECT * FROM projects ORDER BY created_at DESC"
-    );
+    const projects = await Project.find().sort({ createdAt: -1 });
 
     res.json({
       success: true,
@@ -45,24 +44,19 @@ router.post("/", authMiddleware, async (req, res) => {
       });
     }
 
-    const [result] = await db.query(
-      `INSERT INTO projects
-      (title, description, technologies, image, github_url, live_url)
-      VALUES (?, ?, ?, ?, ?, ?)`,
-      [
-        title,
-        description,
-        technologies || null,
-        image || null,
-        github_url || null,
-        live_url || null,
-      ]
-    );
+    const project = await Project.create({
+      title,
+      description,
+      technologies: technologies || null,
+      image: image || null,
+      github_url: github_url || null,
+      live_url: live_url || null,
+    });
 
     res.status(201).json({
       success: true,
       message: "Project created successfully",
-      projectId: result.insertId,
+      projectId: project._id,
     });
   } catch (error) {
     console.error("Error creating project:", error);
@@ -73,6 +67,7 @@ router.post("/", authMiddleware, async (req, res) => {
     });
   }
 });
+
 // PUT update a project
 router.put("/:id", authMiddleware, async (req, res) => {
   try {
@@ -94,27 +89,23 @@ router.put("/:id", authMiddleware, async (req, res) => {
       });
     }
 
-    const [result] = await db.query(
-      `UPDATE projects
-       SET title = ?,
-           description = ?,
-           technologies = ?,
-           image = ?,
-           github_url = ?,
-           live_url = ?
-       WHERE id = ?`,
-      [
+    const project = await Project.findByIdAndUpdate(
+      id,
+      {
         title,
         description,
-        technologies || null,
-        image || null,
-        github_url || null,
-        live_url || null,
-        id,
-      ]
+        technologies: technologies || null,
+        image: image || null,
+        github_url: github_url || null,
+        live_url: live_url || null,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
     );
 
-    if (result.affectedRows === 0) {
+    if (!project) {
       return res.status(404).json({
         success: false,
         message: "Project not found",
@@ -124,6 +115,7 @@ router.put("/:id", authMiddleware, async (req, res) => {
     res.json({
       success: true,
       message: "Project updated successfully",
+      data: project,
     });
   } catch (error) {
     console.error("Error updating project:", error);
@@ -140,12 +132,9 @@ router.delete("/:id", authMiddleware, async (req, res) => {
   try {
     const { id } = req.params;
 
-    const [result] = await db.query(
-      "DELETE FROM projects WHERE id = ?",
-      [id]
-    );
+    const project = await Project.findByIdAndDelete(id);
 
-    if (result.affectedRows === 0) {
+    if (!project) {
       return res.status(404).json({
         success: false,
         message: "Project not found",
@@ -165,4 +154,5 @@ router.delete("/:id", authMiddleware, async (req, res) => {
     });
   }
 });
+
 export default router;
