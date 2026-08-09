@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-
 import connectDB from "./config/db.js";
 
 import projectRoutes from "./routes/projectRoutes.js";
@@ -13,58 +12,49 @@ import dashboardRoutes from "./routes/dashboardRoutes.js";
 dotenv.config();
 
 const app = express();
-
 const PORT = process.env.PORT || 5000;
-const allowedOrigins = [
-  
-  process.env.FRONTEND_URL,
-];
 
-// ================= MIDDLEWARE =================
+const allowedOrigins = [
+  "https://www.janakacharya.com.np",
+  "https://janakacharya.com.np",
+  
+];
 
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: (origin, callback) => {
+      // Allow requests without an Origin header
+      // such as direct API requests/server-side requests.
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
   })
 );
-app.use(express.json());
 
-// ================= HOME ROUTE =================
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.json({
-    success: true,
     message: "Janak Portfolio API is running 🚀",
   });
 });
 
-// ================= API ROUTES =================
-
 app.use("/api/projects", projectRoutes);
-
 app.use("/api/auth", authRoutes);
-
 app.use("/api/blogs", blogRoutes);
-
 app.use("/api/messages", messageRoutes);
-
 app.use("/api/dashboard", dashboardRoutes);
 
-// ================= START SERVER =================
+connectDB();
 
-const startServer = async () => {
-  try {
-    await connectDB();
-
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running on port ${PORT}`);
-    });
-  } catch (error) {
-    console.error("❌ Failed to start server:", error.message);
-    process.exit(1);
-  }
-};
-
-startServer();
-
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
