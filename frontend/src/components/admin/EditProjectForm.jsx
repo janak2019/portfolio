@@ -28,7 +28,7 @@ function EditProjectForm({ project, onSuccess, onClose }) {
     setError("");
 
     try {
-      await api.put(`/projects/${project.id}`, formData);
+      await api.put(`/projects/${project._id}`, formData);
 
       onSuccess();
     } catch (error) {
