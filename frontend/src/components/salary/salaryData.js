@@ -1,20 +1,20 @@
 // Ministry of Finance salary scale effective from 2083 Shrawan 1.
 export const salaryLevels = [
 // निजामती सेवा
-  { id: "chief-secretary", category: "civil", label: "मुख्य सचिव", basic: 54823, maxGrade: 2, gradeRate: 12531 },
-  { id: "ra-pa-distinguished", category: "civil", label: "रा.प. विशिष्ट", basic: 79240, maxGrade: 2, gradeRate: 34683 },
-  { id: "ra-secretary-province", category: "civil", label: "रा. सचिव (प्रदेश प्रयोजन)", basic: 66433, maxGrade: 0, gradeRate: 0 },
-  { id: "ra-pa-first", category: "civil", label: "रा.प. प्रथम", basic: 62866, maxGrade: 7, gradeRate: 20852 },
-  { id: "ra-pa-second", category: "civil", label: "रा.प. द्वितीय", basic: 52311, maxGrade: 5, gradeRate: 19678 },
-  { id: "ra-pa-third", category: "civil", label: "रा.प. तृतीय", basic: 48085, maxGrade: 8, gradeRate: 19602 },
+  { id: "chief-secretary", category: "civil", label: "मुख्य सचिव", basic: 84932, maxGrade: 2, gradeRate:2831 },
+  { id: "ra-pa-distinguished", category: "civil", label: "रा.प. विशिष्ट", basic: 79290, maxGrade: 2, gradeRate: 2643 },
+  { id: "ra-secretary-province", category: "civil", label: "रा. सचिव (प्रदेश प्रयोजन)", basic: 66539, maxGrade: 0, gradeRate: 0 },
+  { id: "ra-pa-first", category: "civil", label: "रा.प. प्रथम", basic: 62466, maxGrade: 7, gradeRate: 2082 },
+  { id: "ra-pa-second", category: "civil", label: "रा.प. द्वितीय", basic: 53611, maxGrade: 8, gradeRate: 1787 },
+  { id: "ra-pa-third", category: "civil", label: "रा.प. तृतीय", basic: 48058, maxGrade: 8, gradeRate: 1602 },
   { id: "ra-pa-non-gazetted-first-pension", category: "civil", label: "रा.प.अनं.प्रथम श्रेणी (अ.मा. पेन्सन प्रयोजन)", basic: 49176, maxGrade: 0, gradeRate: 0 },
-  { id: "ra-pa-non-gazetted-first", category: "civil", label: "रा.प.अनं.प्रथम", basic: 32503, maxGrade: 10, gradeRate: 12793 },
-  { id: "ra-pa-non-gazetted-second-pension", category: "civil", label: "रा.प.अनं.द्वितीय श्रेणी (अ.मा. पेन्सन प्रयोजन)", basic: 34709, maxGrade: 0, gradeRate: 0 },
+  { id: "ra-pa-non-gazetted-first", category: "civil", label: "रा.प.अनं.प्रथम", basic: 38203, maxGrade: 10, gradeRate: 1273 },
+  { id: "ra-pa-non-gazetted-second-pension", category: "civil", label: "रा.प.अनं.द्वितीय श्रेणी (अ.मा. पेन्सन प्रयोजन)", basic: 41517, maxGrade: 0, gradeRate: 0 },
   { id: "ra-pa-non-gazetted-second", category: "civil", label: "रा.प.अनं.द्वितीय", basic: 36192, maxGrade: 10, gradeRate: 12006 },
-  { id: "ra-pa-non-gazetted-third", category: "civil", label: "रा.प.अनं.तृतीय", basic: 30372, maxGrade: 7, gradeRate: 10912 },
-  { id: "ra-pa-non-gazetted-fourth", category: "civil", label: "रा.प.अनं.चतुर्थ", basic: 29650, maxGrade: 6, gradeRate: 954 },
-  { id: "level-five-13", category: "civil", label: "पाँचौं स्तर (क्र.सं. १३)", basic: 44517, maxGrade: 4, gradeRate: 15248 },
-  { id: "level-four-14", category: "civil", label: "चतुर्थ स्तर (क्र.सं. १४)", basic: 43045, maxGrade: 2, gradeRate: 14650 },
+  { id: "ra-pa-non-gazetted-third", category: "civil", label: "रा.प.अनं.तृतीय", basic: 30373, maxGrade: 7, gradeRate: 1012 },
+  { id: "ra-pa-non-gazetted-fourth", category: "civil", label: "रा.प.अनं.चतुर्थ", basic: 28690, maxGrade: 6, gradeRate: 956 },
+  { id: "level-five-13", category: "civil", label: "पाँचौं स्तर (क्र.सं. १३)", basic: 45717, maxGrade: 4, gradeRate: 1524 },
+  { id: "level-four-14", category: "civil", label: "चतुर्थ स्तर (क्र.सं. १४)", basic: 43794, maxGrade: 2, gradeRate: 1460 },
   { id: "level-three-15", category: "civil", label: "तृतीय स्तर (क्र.सं. १५)", basic: 39833, maxGrade: 2, gradeRate: 13630 },
   { id: "level-two-16", category: "civil", label: "द्वितीय स्तर (क्र.सं. १६)", basic: 36693, maxGrade: 2, gradeRate: 11222 },
   { id: "level-one-17", category: "civil", label: "प्रथम स्तर (क्र.सं. १७)", basic: 32707, maxGrade: 2, gradeRate: 10910 },
@@ -181,21 +181,21 @@ export const salaryLevels = [
   
   // सामुदायिक विद्यालयमा कार्यरत शिक्षक
   // माध्यमिक
-  { id: "teacher-1", category: "teacher", label: "माध्यमिक (प्रथम श्रेणी)", basic: 62466, maxGrade: 6 },
-  { id: "teacher-2", category: "teacher", label: "माध्यमिक (द्वितीय श्रेणी)", basic: 53611, maxGrade: 5 },
-  { id: "teacher-3", category: "teacher", label: "माध्यमिक (तृतीय श्रेणी)", basic: 48085, maxGrade: 5 },
+  { id: "teacher-1", category: "teacher", label: "माध्यमिक (प्रथम श्रेणी)", basic: 62466, maxGrade: 6, gradeRate: 2082 },
+  { id: "teacher-2", category: "teacher", label: "माध्यमिक (द्वितीय श्रेणी)", basic: 53611, maxGrade: 8, gradeRate: 1787},
+  { id: "teacher-3", category: "teacher", label: "माध्यमिक (तृतीय श्रेणी)", basic: 48058, maxGrade: 8, gradeRate: 1602 },
 
   // निम्न माध्यमिक
-  { id: "teacher-4", category: "teacher", label: "निम्न माध्यमिक (प्रथम श्रेणी)", basic: 50485, maxGrade: 5 },
-  { id: "teacher-5", category: "teacher", label: "निम्न माध्यमिक (द्वितीय श्रेणी)", basic: 48085, maxGrade: 5 },
-  { id: "teacher-6", category: "teacher", label: "निम्न माध्यमिक (तृतीय श्रेणी)", basic: 35203, maxGrade: 5 },
+  { id: "teacher-4", category: "teacher", label: "निम्न माध्यमिक (प्रथम श्रेणी)", basic: 50448, maxGrade: 8 ,gradeRate: 1682},
+  { id: "teacher-5", category: "teacher", label: "निम्न माध्यमिक (द्वितीय श्रेणी)", basic: 48058, maxGrade: 8 ,gradeRate: 1602},
+  { id: "teacher-6", category: "teacher", label: "निम्न माध्यमिक (तृतीय श्रेणी)", basic: 38203, maxGrade: 8 , gradeRate: 1273},
 
   // प्राथमिक
-  { id: "teacher-7", category: "teacher", label: "एस.एल.सी. उत्तीर्ण (प्रथम श्रेणी)", basic: 48085, maxGrade: 5 },
-  { id: "teacher-8", category: "teacher", label: "एस.एल.सी. उत्तीर्ण (द्वितीय श्रेणी)", basic: 35203, maxGrade: 5 },
-  { id: "teacher-9", category: "teacher", label: "एस.एल.सी. उत्तीर्ण (तृतीय श्रेणी)", basic: 36142, maxGrade: 6 },
-  { id: "teacher-10", category: "teacher", label: "दुई विषयसम्म एस.एल.सी. अनुत्तीर्ण", basic: 30373, maxGrade: 6 },
-  { id: "teacher-11", category: "teacher", label: "दुई विषयभन्दा बढी एस.एल.सी. अनुत्तीर्ण", basic: 28690, maxGrade: 6 },
+  { id: "teacher-7", category: "teacher", label: "एस.एल.सी. उत्तीर्ण (प्रथम श्रेणी)", basic: 48058, maxGrade: 8,gradeRate: 1602 },
+  { id: "teacher-8", category: "teacher", label: "एस.एल.सी. उत्तीर्ण (द्वितीय श्रेणी)", basic: 38203, maxGrade: 8 ,gradeRate: 1273},
+  { id: "teacher-9", category: "teacher", label: "एस.एल.सी. उत्तीर्ण (तृतीय श्रेणी)", basic: 36192, maxGrade: 6 ,gradeRate: 1206},
+  { id: "teacher-10", category: "teacher", label: "दुई विषयसम्म एस.एल.सी. अनुत्तीर्ण", basic: 30373, maxGrade: 6 ,gradeRate: 1012},
+  { id: "teacher-11", category: "teacher", label: "दुई विषयभन्दा बढी एस.एल.सी. अनुत्तीर्ण", basic: 28690, maxGrade: 6 ,gradeRate: 956},
 
  
   // संसद सेवा
