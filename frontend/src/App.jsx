@@ -5,6 +5,7 @@ import Blog from "./pages/Blog";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import BlogDetails from "./pages/BlogDetails";
+import SalaryCalculatorPage from "./pages/SalaryCalculatorPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/blog" element={<Blog />} />
+      <Route path="/salary-calculator" element={<SalaryCalculatorPage />} />
       <Route path="/admin" element={<AdminLogin />} />
       <Route path="/admin/dashboard" element={<AdminDashboard />} />
       <Route

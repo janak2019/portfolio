@@ -16,6 +16,7 @@ export default function Navbar() {
     { label: "Skills", to: "/#skills", hash: true },
     { label: "Portfolio", to: "/#portfolio", hash: true },
     { label: "Blog", to: "/blog", hash: false },
+    { label: "तलब क्यालकुलेटर", to: "/salary-calculator", hash: false },
     { label: "Contact", to: "/#contact", hash: true },
   ];
 
@@ -35,7 +36,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-8">
+            <nav className="hidden lg:flex items-center gap-6">
               {navLinks.map((link) =>
                 link.hash ? (
                   <HashLink
@@ -63,7 +64,7 @@ export default function Navbar() {
               type="button"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
-              className="md:hidden text-white hover:text-cyan-400 transition-colors"
+              className="lg:hidden text-white hover:text-cyan-400 transition-colors"
               onClick={() => setOpen(!open)}
             >
               {open ? <X size={28} /> : <Menu size={28} />}
@@ -73,7 +74,7 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ${
+          className={`lg:hidden overflow-hidden transition-all duration-300 ${
             open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           }`}
         >

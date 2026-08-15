@@ -1,5 +1,5 @@
 
-import profile from "../assets/profile.png";
+import profile from "../assets/profile.jpg";
 
 export default function About() {
   return (
@@ -32,7 +32,7 @@ export default function About() {
               <img
                 src={profile}
                 alt="Janak Acharya"
-                className="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-2xl shadow-2xl"
+                className="relative w-32 h-32 md:w-80 md:h-80 object-cover rounded-2xl shadow-2xl"
               />
 
             </div>

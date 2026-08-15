@@ -1,0 +1,22 @@
+import { employeeCategories, employeeTypes, salaryLevels } from "./salaryData";
+
+const moneyFields = [["basicSalary", "आधारभूत मासिक तलब"], ["dearnessAllowance", "महँगी भत्ता (पूर्वनिर्धारित रु. ५,०००)"], ["otherAllowance", "अन्य मासिक भत्ता"], ["annualOtherDeduction", "अन्य वार्षिक कर छुट"]];
+
+export default function SalaryForm({ form, onChange, onCategoryChange, onLevelChange }) {
+  const selectedLevel = salaryLevels.find((level) => level.id === form.level);
+  return <section className="min-w-0 rounded-2xl border border-slate-800 bg-slate-900 p-4 shadow-xl sm:p-7">
+    <h2 className="text-xl font-semibold text-white">तलब विवरण</h2>
+    <p className="mt-1 text-sm text-slate-400">रकम नेपाली रुपैयाँ (रु.) मा छन्।</p>
+    <div className="mt-6 grid gap-4 sm:grid-cols-2 sm:gap-5">
+      <label><span className="text-sm font-medium text-slate-200">कर्मचारी समूह</span><select value={form.category} onChange={onCategoryChange} className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-white outline-none focus:border-cyan-400">{employeeCategories.map((category) => <option key={category.id} value={category.id}>{category.label}</option>)}</select></label>
+      <label><span className="text-sm font-medium text-slate-200">रोजगारीको प्रकार</span><select name="employeeType" value={form.employeeType} onChange={onChange} className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-white outline-none focus:border-cyan-400">{employeeTypes.map((type) => <option key={type.id} value={type.id}>{type.label}</option>)}</select></label>
+      <label><span className="text-sm font-medium text-slate-200">पद / सेवा तह</span><select value={form.level} onChange={onLevelChange} className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-white outline-none focus:border-cyan-400">{salaryLevels.filter((level) => level.category === form.category).map((level) => <option key={level.id} value={level.id}>{level.label}</option>)}</select></label>
+      <label><span className="text-sm font-medium text-slate-200">प्राप्त ग्रेड संख्या</span><input type="number" min="0" max={selectedLevel.maxGrade} step="1" name="gradeNumber" value={form.gradeNumber} onChange={onChange} className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-white outline-none focus:border-cyan-400" /><span className="mt-1 block text-xs text-slate-500">यस पदका लागि अधिकतम ग्रेड: {selectedLevel.maxGrade}</span></label>
+      {moneyFields.map(([name, label]) => <label key={name}><span className="text-sm font-medium text-slate-200">{label}</span><input type="number" min="0" step="1" name={name} value={form[name]} onChange={onChange} className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-white outline-none focus:border-cyan-400" /></label>)}
+      <div className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-sm text-slate-300"><p className="font-medium text-slate-200">कर्मचारी सञ्चय कोष (EPF)</p><p className="mt-1 text-xs text-slate-400">आधारभूत तलब + ग्रेड रकमको १०% कर्मचारीबाट कट्टी र कार्यालयबाट बराबर योगदान हुन्छ।</p></div>
+      <label><span className="text-sm font-medium text-slate-200">नागरिक लगानी कोष (CIT) स्वेच्छिक मासिक योगदान</span><input type="number" min="0" step="1" name="citSelfContribution" value={form.citSelfContribution} onChange={onChange} className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-white outline-none focus:border-cyan-400" /></label>
+      <div className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-sm text-slate-300"><p className="font-medium text-slate-200">सावधिक जीवन बीमा</p><p className="mt-1 text-xs text-slate-400">कर्मचारी तलबबाट रु. ४०० कट्टी र कार्यालयबाट रु. ४०० बराबर योगदान हुन्छ।</p></div>
+      <fieldset className="sm:col-span-2"><legend className="text-sm font-medium text-slate-200">करदाता वर्ग</legend><div className="mt-2 flex gap-3">{[["individual", "व्यक्तिगत"], ["couple", "दम्पती"]].map(([value, label]) => <label key={value} className="flex cursor-pointer items-center gap-2 rounded-lg border border-slate-700 px-4 py-3 text-sm text-slate-200 has-[:checked]:border-cyan-400 has-[:checked]:bg-cyan-400/10"><input type="radio" name="taxpayer" value={value} checked={form.taxpayer === value} onChange={onChange} />{label}</label>)}</div></fieldset>
+    </div>
+  </section>;
+}
