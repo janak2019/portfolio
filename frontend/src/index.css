@@ -1,3 +1,138 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* ========================================
+   Salary Result Print
+======================================== */
+
+.salary-print {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .salary-print {
+    display: block !important;
+    width: 100%;
+    color: #111827;
+    font-family: "Noto Sans Devanagari", "Noto Sans", Arial, sans-serif;
+  }
+
+  .print-header {
+    text-align: center;
+    border-bottom: 2px solid #111827;
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+  }
+
+  .print-header h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .print-header p {
+    margin: 5px 0 0;
+    font-size: 13px;
+  }
+
+  .print-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 15px;
+    font-size: 13px;
+  }
+
+  .print-takehome {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #111827;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+
+  .print-takehome strong {
+    font-size: 20px;
+  }
+
+  /* Sections */
+  .salary-print section {
+    margin-bottom: 7px;
+    page-break-inside: avoid;
+  }
+
+  .salary-print section h2 {
+    font-size: 15px;
+    margin: 0;
+    padding: 7px 10px;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+  }
+
+  .print-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 7px 10px;
+    border-left: 1px solid #cbd5e1;
+    border-right: 1px solid #cbd5e1;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 12px;
+  }
+
+  .print-row strong {
+    white-space: nowrap;
+  }
+
+  .print-row-emphasis {
+    border-bottom: 1px solid #111827;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  .print-note {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    font-size: 10px;
+    line-height: 1.6;
+  }
+
+  .print-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    padding-top: 10px;
+    border-top: 1px solid #cbd5e1;
+    font-size: 10px;
+    color: #64748b;
+  }
+
+  /* Hide everything else during printing */
+  body * {
+    visibility: hidden;
+  }
+
+  .salary-print,
+  .salary-print * {
+    visibility: visible;
+  }
+
+  .salary-print {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
