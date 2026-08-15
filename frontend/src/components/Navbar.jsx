@@ -16,7 +16,7 @@ export default function Navbar() {
     { label: "Skills", to: "/#skills", hash: true },
     { label: "Portfolio", to: "/#portfolio", hash: true },
     { label: "Blog", to: "/blog", hash: false },
-    { label: "तलब क्यालकुलेटर", to: "/salary-calculator", hash: false },
+    { label: "Salary Calculator", to: "/salary-calculator", hash: false },
     { label: "Contact", to: "/#contact", hash: true },
   ];
 
