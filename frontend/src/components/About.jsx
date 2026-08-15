@@ -1,5 +1,5 @@
 
-import profile from "../assets/profile.jpg";
+import profile from "../assets/profile.JPG";
 
 export default function About() {
   return (
