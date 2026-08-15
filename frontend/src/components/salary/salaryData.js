@@ -178,12 +178,7 @@ export const salaryLevels = [
   { id: "province-local-22", category: "province-local", label: "कार्यालय सहयोगी - द्वितीय स्तर", basic: 28690, maxGrade: 2 },
   { id: "province-local-23", category: "province-local", label: "कार्यालय सहयोगी - प्रथम स्तर", basic: 27792, maxGrade: 2 },
 
-  // छैठौं तह — खाईपाएको तलबमा एकमुष्ठ थप हुने रु.२५०/-
-  { id: "province-local-24", category: "province-local", label: "छैठौं तह - पाँचौं तह", basic: 36142, maxGrade: 4 },
-  { id: "province-local-25", category: "province-local", label: "छैठौं तह - चतुर्थ तह", basic: 32701, maxGrade: 2 },
-  { id: "province-local-26", category: "province-local", label: "छैठौं तह - तृतीय तह", basic: 30373, maxGrade: 2 },
-  { id: "province-local-27", category: "province-local", label: "छैठौं तह - द्वितीय तह", basic: 28690, maxGrade: 2 },
-  { id: "province-local-28", category: "province-local", label: "छैठौं तह - प्रथम तह", basic: 27792, maxGrade: 2 },
+  
   // सामुदायिक विद्यालयमा कार्यरत शिक्षक
   // माध्यमिक
   { id: "teacher-1", category: "teacher", label: "माध्यमिक (प्रथम श्रेणी)", basic: 62466, maxGrade: 6 },
@@ -202,12 +197,7 @@ export const salaryLevels = [
   { id: "teacher-10", category: "teacher", label: "दुई विषयसम्म एस.एल.सी. अनुत्तीर्ण", basic: 30373, maxGrade: 6 },
   { id: "teacher-11", category: "teacher", label: "दुई विषयभन्दा बढी एस.एल.सी. अनुत्तीर्ण", basic: 28690, maxGrade: 6 },
 
-  // कार्यालय सहयोगी
-  { id: "teacher-12", category: "teacher", label: "पाँचौं तह", basic: 36142, maxGrade: 4 },
-  { id: "teacher-13", category: "teacher", label: "चतुर्थ तह", basic: 32701, maxGrade: 2 },
-  { id: "teacher-14", category: "teacher", label: "तृतीय तह", basic: 30373, maxGrade: 2 },
-  { id: "teacher-15", category: "teacher", label: "द्वितीय तह", basic: 28690, maxGrade: 2 },
-  { id: "teacher-16", category: "teacher", label: "प्रथम तह", basic: 27792, maxGrade: 2 },
+ 
   // संसद सेवा
   { id: "parliament-1", category: "parliament", label: "विशिष्ट", basic: 79220, maxGrade: 2 },
   { id: "parliament-2", category: "parliament", label: "अतिरिक्त सचिव", basic: 66539, maxGrade: 0 },
@@ -233,6 +223,14 @@ export const salaryLevels = [
   { id: "parliament-19", category: "parliament", label: "हलुका सवारी चालक - तृतीय तह", basic: 36673, maxGrade: 2 },
   { id: "parliament-20", category: "parliament", label: "हलुका सवारी चालक - द्वितीय तह", basic: 32701, maxGrade: 2 },
   { id: "parliament-21", category: "parliament", label: "हलुका सवारी चालक - प्रथम तह", basic: 30373, maxGrade: 2 },
+  // छैठौं तह — खाईपाएको तलबमा एकमुष्ठ थप हुने रु.२५०/-
+  { id: "province-local-24", category: "province-local", label: "छैठौं तह - पाँचौं तह", basic: 36142, maxGrade: 4 },
+  { id: "province-local-25", category: "province-local", label: "छैठौं तह - चतुर्थ तह", basic: 32701, maxGrade: 2 },
+  { id: "province-local-26", category: "province-local", label: "छैठौं तह - तृतीय तह", basic: 30373, maxGrade: 2 },
+  { id: "province-local-27", category: "province-local", label: "छैठौं तह - द्वितीय तह", basic: 28690, maxGrade: 2 },
+  { id: "province-local-28", category: "province-local", label: "छैठौं तह - प्रथम तह", basic: 27792, maxGrade: 2 },
+  
+
 { id: "province-custom", category: "province", label: "आफ्नो पदको आधारभूत तलब प्रविष्ट गर्नुहोस्", basic: 0, maxGrade: 0 },
 { id: "local-custom", category: "local", label: "आफ्नो पदको आधारभूत तलब प्रविष्ट गर्नुहोस्", basic: 0, maxGrade: 0 },
 ];
