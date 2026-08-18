@@ -232,8 +232,22 @@ export const salaryLevels = [
 
 
 
-{ id: "province-custom", category: "province", label: "आफ्नो पदको आधारभूत तलब प्रविष्ट गर्नुहोस्", basic: 0, maxGrade: 0 },
-{ id: "local-custom", category: "local", label: "आफ्नो पदको आधारभूत तलब प्रविष्ट गर्नुहोस्", basic: 0, maxGrade: 0 },
+
+{ id: "province-1", category: "province", label: "अधिकृत एघारौं", basic: 66539, maxGrade: 5 },
+  { id: "province-2", category: "province", label: "अधिकृत दशौं", basic: 62466, maxGrade: 7 },
+  { id: "province-3", category: "province", label: "अधिकृत नवौं", basic: 57659, maxGrade: 7 },
+  { id: "province-4", category: "province", label: "अधिकृत आठौं", basic: 53611, maxGrade: 7 },
+  { id: "province-5", category: "province", label: "अधिकृत सातौं", basic: 50436, maxGrade: 8 },
+  { id: "province-6", category: "province", label: "अधिकृत छैठौं", basic: 48085, maxGrade: 8 },
+  { id: "province-7", category: "province", label: "सहायक पाँचौं", basic: 35203, maxGrade: 10 },
+  { id: "province-8", category: "province", label: "सहायक चौथौं", basic: 36142, maxGrade: 10 },
+  { id: "local-2", category: "local", label: "अधिकृत दशौं", basic: 62466, maxGrade: 7 },
+  { id: "local-3", category: "local", label: "अधिकृत नवौं", basic: 57659, maxGrade: 7 },
+  { id: "local-4", category: "local", label: "अधिकृत आठौं", basic: 53611, maxGrade: 7 },
+  { id: "local-5", category: "local", label: "अधिकृत सातौं", basic: 50436, maxGrade: 8 },
+  { id: "local-6", category: "local", label: "अधिकृत छैठौं", basic: 48085, maxGrade: 8 },
+  { id: "local-7", category: "local", label: "सहायक पाँचौं", basic: 35203, maxGrade: 10 },
+  { id: "local-8", category: "local", label: "सहायक चौथौं", basic: 36142, maxGrade: 10 },
 ];
 
 export const employeeCategories = [
